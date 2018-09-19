@@ -1,0 +1,44 @@
+PODS:
+  - ExtensibleEnumeratedName (1.0.1)
+  - WolfFoundation (1.0):
+    - WolfNumerics
+    - WolfPipe
+    - WolfStrings
+  - WolfGeometry (0.1.0):
+    - ExtensibleEnumeratedName
+    - WolfFoundation
+    - WolfNumerics
+    - WolfStrings
+  - WolfNumerics (1.0.1)
+  - WolfPipe (1.0.1)
+  - WolfStrings (1.0.1):
+    - ExtensibleEnumeratedName
+    - WolfNumerics
+    - WolfPipe
+
+DEPENDENCIES:
+  - WolfGeometry (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ExtensibleEnumeratedName
+    - WolfFoundation
+    - WolfNumerics
+    - WolfPipe
+    - WolfStrings
+
+EXTERNAL SOURCES:
+  WolfGeometry:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ExtensibleEnumeratedName: 70c35288c7e34eff64b4b1da8b0c6e993013738b
+  WolfFoundation: 90959f037de362da543adfdbe347f79c28e7f0db
+  WolfGeometry: d848dfe75265d43a74db299dfe4c477cccd60e49
+  WolfNumerics: 47d911caaf5350fc838b638ca47a5427b676d275
+  WolfPipe: 7ddf803ae6bc9d42d34120bcce43d25940e3c791
+  WolfStrings: 0691ee5c7aae7c040a6552ca97ddfa510ecccf88
+
+PODFILE CHECKSUM: c83a328b96782f939891e5bc7a11cb20403ac760
+
+COCOAPODS: 1.6.0.beta.1
