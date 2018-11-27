@@ -131,7 +131,7 @@ extension OSBezierPath {
                     move(to: CGPoint(startPoint))
                 }
                 #if os(macOS)
-                    addArcWithCenter(center: center.cgPoint, radius: cornerRadius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise)
+                    addArcWithCenter(center: CGPoint(center), radius: cornerRadius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise)
                 #else
                     addArc(withCenter: CGPoint(center), radius: cornerRadius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise)
                 #endif
