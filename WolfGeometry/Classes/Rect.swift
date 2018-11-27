@@ -29,8 +29,9 @@
 #endif
 
 import Foundation
+import WolfNumerics
 
-public struct Rect: Codable {
+public struct Rect {
     public var origin: Point
     public var size: Size
 
@@ -48,19 +49,6 @@ public struct Rect: Codable {
         self.init(origin: Point(x: minX, y: minY), size: Size(width: maxX - minX, height: maxY - minY))
     }
 }
-
-#if os(iOS) || os(macOS) || os(tvOS)
-    extension Rect {
-        public init(r: CGRect) {
-            origin = Point(x: Double(r.origin.x), y: Double(r.origin.y))
-            size = Size(width: Double(r.size.width), height: Double(r.size.height))
-        }
-
-        public var cgRect: CGRect {
-            return CGRect(x: CGFloat(origin.x), y: CGFloat(origin.y), width: CGFloat(size.width), height: CGFloat(size.height))
-        }
-    }
-#endif
 
 extension Rect: CustomStringConvertible {
     public var description: String {
@@ -374,4 +362,44 @@ extension Rect: Equatable {
 
 public func == (lhs: Rect, rhs: Rect) -> Bool {
     return lhs.origin == rhs.origin && lhs.size == rhs.size
+}
+
+extension Rect: Interpolable {
+    public func interpolated(to other: Rect, at frac: Frac) -> Rect {
+        return Rect(origin: origin.interpolated(to: other.origin, at: frac),
+                    size: size.interpolated(to: other.size, at: frac))
+    }
+}
+
+#if canImport(CoreGraphics)
+extension Rect {
+    public init(_ r: CGRect) {
+        self.init(origin: Point(r.origin), size: Size(r.size))
+    }
+}
+
+extension CGRect {
+    public init(_ r: Rect) {
+        self.init(origin: CGPoint(r.origin), size: CGSize(r.size))
+    }
+}
+#endif
+
+extension Rect : Codable {
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        let x = try container.decode(Double.self)
+        let y = try container.decode(Double.self)
+        let width = try container.decode(Double.self)
+        let height = try container.decode(Double.self)
+        self.init(x: x, y: y, width: width, height: height)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(origin.x)
+        try container.encode(origin.y)
+        try container.encode(size.width)
+        try container.encode(size.height)
+    }
 }

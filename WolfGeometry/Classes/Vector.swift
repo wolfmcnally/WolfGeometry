@@ -29,6 +29,7 @@
 #endif
 
 import Foundation
+import WolfNumerics
 
 public struct Vector {
     public var dx: Double = 0
@@ -49,19 +50,6 @@ public struct Vector {
         dy = sin(theta) * magnitude
     }
 }
-
-#if os(iOS) || os(macOS) || os(tvOS)
-    extension Vector {
-        public init(v: CGVector) {
-            dx = Double(v.dx)
-            dy = Double(v.dy)
-        }
-
-        public var cgVector: CGVector {
-            return CGVector(dx: CGFloat(dx), dy: CGFloat(dy))
-        }
-    }
-#endif
 
 extension Vector: CustomStringConvertible {
     public var description: String {
@@ -89,12 +77,12 @@ extension Vector {
         dy = point2.y - point1.y
     }
 
-    public init(point: Point) {
+    public init(_ point: Point) {
         dx = point.x
         dy = point.y
     }
 
-    public init(size: Size) {
+    public init(_ size: Size) {
         dx = size.width
         dy = size.height
     }
@@ -138,6 +126,46 @@ extension Vector {
     public static var unit = Vector(dx: 1, dy: 0)
 }
 
+extension Vector {
+    public static func min(_ v1: Vector, _ v2: Vector) -> Vector {
+        return Vector(dx: v1.dx < v2.dx ? v1.dx : v2.dx,
+                     dy: v1.dy < v2.dy ? v1.dy : v2.dy)
+    }
+
+    public static func max(_ v1: Vector, _ v2: Vector) -> Vector {
+        return Vector(dx: v1.dx > v2.dx ? v1.dx : v2.dx,
+                     dy: v1.dy > v2.dy ? v1.dy : v2.dy)
+    }
+}
+
+extension Vector {
+    public static let dimensions = 2
+
+    public subscript(dimension: Int) -> Double {
+        get {
+            switch dimension {
+            case 0:
+                return self.dx
+            case 1:
+                return self.dy
+            default:
+                fatalError()
+            }
+        }
+
+        set {
+            switch dimension {
+            case 0:
+                self.dx = newValue
+            case 1:
+                self.dy = newValue
+            default:
+                fatalError()
+            }
+        }
+    }
+}
+
 extension Vector: Equatable {
 }
 
@@ -169,6 +197,10 @@ public func * (lhs: Vector, rhs: Double) -> Vector {
     return Vector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
 }
 
+public func * (lhs: Double, rhs: Vector) -> Vector {
+    return Vector(dx: lhs * rhs.dx, dy: lhs * rhs.dy)
+}
+
 public func * (lhs: Vector, rhs: Vector) -> Vector {
     return Vector(dx: lhs.dx * rhs.dx, dy: lhs.dy * rhs.dy)
 }
@@ -179,4 +211,39 @@ public func dot(_ v1: Vector, _ v2: Vector) -> Double {
 
 public func cross(_ v1: Vector, _ v2: Vector) -> Double {
     return v1.dx * v2.dy - v1.dy * v2.dx
+}
+
+extension Vector: Interpolable {
+    public func interpolated(to other: Vector, at frac: Frac) -> Vector {
+        return Vector(dx: dx.interpolated(to: other.dx, at: frac),
+                        dy: dy.interpolated(to: other.dy, at: frac))
+    }
+}
+
+#if canImport(CoreGraphics)
+extension Vector {
+    public init(v: CGVector) {
+        self.init(dx: Double(v.dx), dy: Double(v.dy))
+    }
+}
+
+extension CGVector {
+    public init(v: Vector) {
+        self.init(dx: CGFloat(v.dx), dy: CGFloat(v.dy))
+    }
+}
+#endif
+
+extension Vector : Codable {
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        dx = try container.decode(Double.self)
+        dy = try container.decode(Double.self)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(dx)
+        try container.encode(dy)
+    }
 }

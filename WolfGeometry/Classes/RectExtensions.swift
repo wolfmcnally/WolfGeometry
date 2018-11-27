@@ -24,6 +24,7 @@
 
 import CoreGraphics
 import WolfStrings
+import WolfNumerics
 
 extension CGRect {
     // Corners
@@ -169,5 +170,12 @@ extension CGRect {
 
     public init(center: CGPoint, size: CGFloat) {
         self.init(center: center, size: CGSize(width: size, height: size))
+    }
+}
+
+extension CGRect: Interpolable {
+    public func interpolated(to other: CGRect, at frac: Frac) -> CGRect {
+        return CGRect(origin: origin.interpolated(to: other.origin, at: frac),
+                    size: size.interpolated(to: other.size, at: frac))
     }
 }

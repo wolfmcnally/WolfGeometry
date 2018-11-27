@@ -106,37 +106,30 @@ public func angleBetweenVectors(_ v1: Vector, _ v2: Vector) -> Double {
     return atan2(cross(v1, v2), dot(v1, v2))
 }
 
-public func turningAngleAtVertex(_ p1: Point, _ p2: Point, _ p3: Point) -> Double {
-    let v1 = Vector(p1, p2)
-    let v2 = Vector(p2, p3)
-    return angleBetweenVectors(v1, v2)
+public func angleAtVertex(o: Point, _ p1: Point, _ p2: Point) -> Double {
+    return angleBetweenVectors(Vector(o, p1), Vector(o, p2))
 }
 
-public func meetingAngleAtVertex(_ p1: Point, _ p2: Point, _ p3: Point) -> Double {
-    let v1 = Vector(p1, p2)
-    let v2 = Vector(p3, p2)
-    return angleBetweenVectors(v1, v2)
-}
-
-public func partingAngleAtVertex(_ p1: Point, _ p2: Point, _ p3: Point) -> Double {
-    let v1 = Vector(p2, p1)
-    let v2 = Vector(p2, p3)
-    return angleBetweenVectors(v1, v2)
+//
+// https://math.stackexchange.com/questions/405966/if-i-have-three-points-is-there-an-easy-way-to-tell-if-they-are-collinear
+//
+public func isCollinear(p1: Point, p2: Point, p3: Point, within tolerance: Double) -> Bool {
+    return abs((p3.y - p2.y) * (p1.x - p3.x) - (p1.y - p3.y) * (p3.x - p2.x)) < tolerance
 }
 
 //
 // http://math.stackexchange.com/questions/797828/calculate-center-of-circle-tangent-to-two-lines-in-space
 //
-public func infoForRoundedCornerArcAtVertex(withRadius radius: Double, _ p1: Point, _ p2: Point, _ p3: Point) -> (center: Point, startPoint: Point, startAngle: Double, endPoint: Point, endAngle: Double, clockwise: Bool) {
-    let alpha = partingAngleAtVertex(p1, p2, p3)
+public func infoForRoundedCornerArcAtVertex(withRadius radius: Double, o: Point, _ p1: Point, _ o2: Point) -> (center: Point, startPoint: Point, startAngle: Double, endPoint: Point, endAngle: Double, clockwise: Bool) {
+    let alpha = angleAtVertex(o: o, p1, o2)
     let distanceFromVertexToCenter = radius / (sin(alpha / 2))
 
-    let p1p2angle = angleOfLineSegment(p1, p2)
+    let p1p2angle = angleOfLineSegment(p1, o)
     let bisectionAngle = alpha / 2.0
     let centerAngle = p1p2angle + bisectionAngle
-    let center = Point(center: p2, angle: centerAngle, radius: distanceFromVertexToCenter)
+    let center = Point(center: o, angle: centerAngle, radius: distanceFromVertexToCenter)
     let startAngle = p1p2angle - .pi / 2
-    let endAngle = angleOfLineSegment(p2, p3) - .pi / 2
+    let endAngle = angleOfLineSegment(o, o2) - .pi / 2
     let clockwise = true // TODO
     let startPoint = Point(center: center, angle: startAngle, radius: radius)
     let endPoint = Point(center: center, angle: endAngle, radius: radius)

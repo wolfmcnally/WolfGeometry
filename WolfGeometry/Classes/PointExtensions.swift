@@ -24,6 +24,7 @@
 
 import CoreGraphics
 import WolfStrings
+import WolfNumerics
 
 extension CGPoint {
     public init(vector: CGVector) {
@@ -67,6 +68,13 @@ extension CGPoint {
     }
 }
 
+extension CGPoint: Interpolable {
+    public func interpolated(to other: CGPoint, at frac: Frac) -> CGPoint {
+        return CGPoint(x: x.interpolated(to: other.x, at: frac),
+                       y: y.interpolated(to: other.y, at: frac))
+    }
+}
+
 public func + (lhs: CGPoint, rhs: CGPoint) -> CGVector {
     return CGVector(dx: lhs.x + rhs.x, dy: lhs.y + rhs.y)
 }
@@ -89,17 +97,4 @@ public func + (lhs: CGVector, rhs: CGPoint) -> CGPoint {
 
 public func - (lhs: CGVector, rhs: CGPoint) -> CGPoint {
     return CGPoint(x: lhs.dx - rhs.x, y: lhs.dy - rhs.y)
-}
-
-extension Point {
-    /// Provides conversion from CoreGraphics CGPoint types.
-    public init(cgPoint p: CGPoint) {
-        x = Double(p.x)
-        y = Double(p.y)
-    }
-
-    /// Provides conversion to CoreGraphics CGPoint types.
-    public var cgPoint: CGPoint {
-        return CGPoint(x: CGFloat(x), y: CGFloat(y))
-    }
 }

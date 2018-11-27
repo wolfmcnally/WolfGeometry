@@ -25,6 +25,7 @@
 import Foundation
 import CoreGraphics
 import WolfStrings
+import WolfNumerics
 
 #if canImport(UIKit)
     import UIKit
@@ -115,6 +116,13 @@ extension CGSize {
         let joiner = Joiner(left: "(", right: ")")
         joiner.append(width %% 3, height %% 3)
         return joiner.description
+    }
+}
+
+extension CGSize: Interpolable {
+    public func interpolated(to other: CGSize, at frac: Frac) -> CGSize {
+        return CGSize(width: width.interpolated(to: other.width, at: frac),
+                      height: height.interpolated(to: other.height, at: frac))
     }
 }
 

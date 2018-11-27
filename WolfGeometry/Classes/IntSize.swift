@@ -23,7 +23,6 @@
 //  SOFTWARE.
 
 import Foundation
-import WolfNumerics
 
 public struct IntSize {
     public var width: Int
@@ -35,11 +34,11 @@ public struct IntSize {
     }
 
     public func randomX() -> Int {
-        return Random.number(0 ..< width)
+        return Int.random(in: 0 ..< width)
     }
 
     public func randomY() -> Int {
-        return Random.number(0 ..< height)
+        return Int.random(in: 0 ..< height)
     }
 
     public func randomPoint() -> Point {

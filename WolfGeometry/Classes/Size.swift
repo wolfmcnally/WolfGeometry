@@ -22,11 +22,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+import WolfNumerics
+
 #if canImport(CoreGraphics)
-    import CoreGraphics
+import CoreGraphics
 #endif
 
-public struct Size: Codable {
+public struct Size {
     public var width: Double = 0
     public var height: Double = 0
 
@@ -57,7 +59,7 @@ public struct Size: Codable {
 #endif
 
 extension Size {
-    public init(vector: Vector) {
+    public init(_ vector: Vector) {
         width = vector.dx
         height = vector.dy
     }
@@ -92,12 +94,12 @@ extension Size {
 
     public func aspectFit(within size: Size) -> Size {
         let scale = scaleForAspectFit(within: size)
-        return Size(vector: Vector(size: self) * scale)
+        return Size(Vector(self) * scale)
     }
 
     public func aspectFill(within size: Size) -> Size {
         let scale = scaleForAspectFill(within: size)
-        return Size(vector: Vector(size: self) * scale)
+        return Size(Vector(self) * scale)
     }
 
     public var max: Double {
@@ -147,4 +149,39 @@ public func * (lhs: Size, rhs: Double) -> Size {
 
 public func / (lhs: Size, rhs: Double) -> Size {
     return Size(width: lhs.width / rhs, height: lhs.height / rhs)
+}
+
+extension Size: Interpolable {
+    public func interpolated(to other: Size, at frac: Frac) -> Size {
+        return Size(width: width.interpolated(to: other.width, at: frac),
+                    height: height.interpolated(to: other.height, at: frac))
+    }
+}
+
+#if canImport(CoreGraphics)
+extension Size {
+    public init(_ s: CGSize) {
+        self.init(width: Double(s.width), height: Double(s.height))
+    }
+}
+
+extension CGSize {
+    public init(_ s: Size) {
+        self.init(width: CGFloat(s.width), height: CGFloat(s.height))
+    }
+}
+#endif
+
+extension Size : Codable {
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        width = try container.decode(Double.self)
+        height = try container.decode(Double.self)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(width)
+        try container.encode(height)
+    }
 }

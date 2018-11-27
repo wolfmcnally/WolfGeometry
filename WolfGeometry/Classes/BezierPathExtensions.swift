@@ -123,17 +123,17 @@ extension OSBezierPath {
             }
         } else {
             for index in 0 ..< corners.count {
-                let p1 = Point(cgPoint: corners.element(atCircularIndex: index - 1))
-                let p2 = Point(cgPoint: corners[index])
-                let p3 = Point(cgPoint: corners.element(atCircularIndex: index + 1))
-                let (center, startPoint, startAngle, _ /*endPoint*/, endAngle, clockwise) = infoForRoundedCornerArcAtVertex(withRadius: Double(cornerRadius), p1, p2, p3)
+                let o = Point(corners[index])
+                let p1 = Point(corners.element(atCircularIndex: index - 1))
+                let p2 = Point(corners.element(atCircularIndex: index + 1))
+                let (center, startPoint, startAngle, _ /*endPoint*/, endAngle, clockwise) = infoForRoundedCornerArcAtVertex(withRadius: Double(cornerRadius), o: o, p1, p2)
                 if index == 0 {
-                    move(to: startPoint.cgPoint)
+                    move(to: CGPoint(startPoint))
                 }
                 #if os(macOS)
                     addArcWithCenter(center: center.cgPoint, radius: cornerRadius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise)
                 #else
-                    addArc(withCenter: center.cgPoint, radius: cornerRadius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise)
+                    addArc(withCenter: CGPoint(center), radius: cornerRadius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise)
                 #endif
             }
         }

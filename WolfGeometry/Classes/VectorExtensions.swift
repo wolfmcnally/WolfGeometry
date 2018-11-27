@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 import CoreGraphics
+import WolfNumerics
 
 extension CGVector {
     public init(angle theta: CGFloat, magnitude: CGFloat) {
@@ -94,4 +95,11 @@ public func dot(v1: CGVector, _ v2: CGVector) -> CGFloat {
 
 public func cross(v1: CGVector, _ v2: CGVector) -> CGFloat {
     return v1.dx * v2.dy - v1.dy * v2.dx
+}
+
+extension CGVector: Interpolable {
+    public func interpolated(to other: CGVector, at frac: Frac) -> CGVector {
+        return CGVector(dx: dx.interpolated(to: other.dx, at: frac),
+                        dy: dy.interpolated(to: other.dy, at: frac))
+    }
 }

@@ -45,3 +45,55 @@ extension CGAffineTransform {
         return translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
     }
 }
+
+extension CGAffineTransform {
+    public init(scaling s: Vector) {
+        self.init(scaleX: s.dx, y: s.dy)
+    }
+
+    public init(translation t: Vector) {
+        self.init(translationX: t.dx, y: t.dy)
+    }
+
+    public func scaled(by v: Vector) -> CGAffineTransform {
+        return scaledBy(x: v.dx, y: v.dy)
+    }
+
+    public func translated(by v: Vector) -> CGAffineTransform {
+        return translatedBy(x: v.dx, y: v.dy)
+    }
+
+    public func rotated(by angle: Double, around point: Point) -> CGAffineTransform {
+        return translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
+    }
+}
+
+extension CGAffineTransform {
+    public init(a: Double, b: Double, c: Double, d: Double, tx: Double, ty: Double) {
+        self.init(a: CGFloat(a), b: CGFloat(b), c: CGFloat(c), d: CGFloat(d), tx: CGFloat(tx), ty: CGFloat(ty))
+    }
+
+    public init(translationX tx: Double, y ty: Double) {
+        self.init(translationX: CGFloat(tx), y: CGFloat(ty))
+    }
+
+    public init(scaleX sx: Double, y sy: Double) {
+        self.init(scaleX: CGFloat(sx), y: CGFloat(sy))
+    }
+
+    public init(rotationAngle angle: Double) {
+        self.init(rotationAngle: CGFloat(angle))
+    }
+
+    public func translatedBy(x tx: Double, y ty: Double) -> CGAffineTransform {
+        return translatedBy(x: CGFloat(tx), y: CGFloat(ty))
+    }
+
+    public func scaledBy(x sx: Double, y sy: Double) -> CGAffineTransform {
+        return scaledBy(x: CGFloat(sx), y: CGFloat(sy))
+    }
+
+    public func rotated(by angle: Double) -> CGAffineTransform {
+        return rotated(by: CGFloat(angle))
+    }
+}

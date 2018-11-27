@@ -25,8 +25,12 @@
 import Foundation
 import WolfNumerics
 
+#if canImport(CoreGraphics)
+import CoreGraphics
+#endif
+
 /// Represents a 2-dimensional point, with Double precision.
-public struct Point: Codable {
+public struct Point {
     public var x: Double = 0
     public var y: Double = 0
 
@@ -43,7 +47,7 @@ public struct Point: Codable {
 
 extension Point {
     /// Provides conversion from Vector.
-    public init(vector: Vector) {
+    public init(_ vector: Vector) {
         x = vector.dx
         y = vector.dy
     }
@@ -66,6 +70,10 @@ extension Point {
 
     public var angle: Double {
         return atan2(y, x)
+    }
+
+    public func distance(to point: Point) -> Double {
+        return (point - self).magnitude
     }
 
     public func rotated(by theta: Double, aroundCenter center: Point) -> Point {
@@ -98,6 +106,46 @@ extension Point {
 }
 
 extension Point {
+    public static func min(_ p1: Point, _ p2: Point) -> Point {
+        return Point(x: p1.x < p2.x ? p1.x : p2.x,
+                     y: p1.y < p2.y ? p1.y : p2.y)
+    }
+
+    public static func max(_ p1: Point, _ p2: Point) -> Point {
+        return Point(x: p1.x > p2.x ? p1.x : p2.x,
+                     y: p1.y > p2.y ? p1.y : p2.y)
+    }
+}
+
+extension Point {
+    public static let dimensions = 2
+
+    public subscript(dimension: Int) -> Double {
+        get {
+            switch dimension {
+            case 0:
+                return self.x
+            case 1:
+                return self.y
+            default:
+                fatalError()
+            }
+        }
+
+        set {
+            switch dimension {
+            case 0:
+                self.x = newValue
+            case 1:
+                self.y = newValue
+            default:
+                fatalError()
+            }
+        }
+    }
+}
+
+extension Point {
     public func toNormalizedCoordinates(fromSize size: Size) -> Point {
         let nx = x.lerped(from: 0..size.width, to: -1..1)
         let ny = y.lerped(from: 0..size.height, to: -1..1)
@@ -123,8 +171,19 @@ extension Point: Equatable {
     }
 }
 
+extension Point: Interpolable {
+    public func interpolated(to other: Point, at frac: Frac) -> Point {
+        return Point(x: x.interpolated(to: other.x, at: frac),
+                     y: y.interpolated(to: other.y, at: frac))
+    }
+}
+
+public prefix func - (rhs: Point) -> Point {
+    return Point(x: -rhs.x, y: -rhs.y)
+}
+
 public func - (lhs: Point, rhs: Point) -> Vector {
-    return Vector(dx: rhs.x - lhs.x, dy: rhs.y - lhs.y)
+    return Vector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
 }
 
 public func + (lhs: Point, rhs: Vector) -> Point {
@@ -149,4 +208,48 @@ public func + (lhs: Vector, rhs: Point) -> Point {
 
 public func - (lhs: Vector, rhs: Point) -> Point {
     return Point(x: lhs.dx - rhs.x, y: lhs.dy - rhs.y)
+}
+
+public func * (lhs: Point, rhs: Double) -> Point {
+    return Point(x: lhs.x * rhs, y: lhs.y * rhs)
+}
+
+public func * (lhs: Double, rhs: Point) -> Point {
+    return Point(x: lhs * rhs.x, y: lhs * rhs.y)
+}
+
+public func / (lhs: Point, rhs: Double) -> Point {
+    return Point(x: lhs.x / rhs, y: lhs.y / rhs)
+}
+
+public func + (lhs: Point, rhs: Point) -> Point {
+    return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+}
+
+#if canImport(CoreGraphics)
+extension Point {
+    public init(_ p: CGPoint) {
+        self.init(x: Double(p.x), y: Double(p.y))
+    }
+}
+
+extension CGPoint {
+    public init(_ p: Point) {
+        self.init(x: CGFloat(p.x), y: CGFloat(p.y))
+    }
+}
+#endif
+
+extension Point : Codable {
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        x = try container.decode(Double.self)
+        y = try container.decode(Double.self)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(x)
+        try container.encode(y)
+    }
 }
