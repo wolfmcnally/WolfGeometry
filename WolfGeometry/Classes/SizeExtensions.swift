@@ -40,6 +40,10 @@ import WolfNumerics
 extension CGSize {
     public static var none = CGSize(width: noSize, height: noSize)
 
+    public init(both n: CGFloat) {
+        self.init(width: n, height: n)
+    }
+
     public init(vector: CGVector) {
         self.init(width: vector.dx, height: vector.dy)
     }

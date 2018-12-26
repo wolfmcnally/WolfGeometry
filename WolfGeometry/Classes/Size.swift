@@ -59,6 +59,10 @@ public struct Size {
 #endif
 
 extension Size {
+    public init(both n: Double) {
+        self.init(width: n, height: n)
+    }
+
     public init(_ vector: Vector) {
         width = vector.dx
         height = vector.dy
