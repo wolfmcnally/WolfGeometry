@@ -219,9 +219,9 @@ extension Rect {
         guard !isNull else { return self }
         var r = self.standardized
         r.minX += dx
-        r.maxX -= dx
+        r.width -= dx * 2
         r.minY += dy
-        r.maxY -= dy
+        r.height -= dy * 2
         if r.width < 0.0 || r.height < 0.0 {
             r = .null
         }
