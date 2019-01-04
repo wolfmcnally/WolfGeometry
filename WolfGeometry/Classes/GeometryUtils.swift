@@ -46,56 +46,11 @@ public func degrees<T: BinaryFloatingPoint>(for radians: T) -> T {
 public func radians<T: BinaryFloatingPoint>(for degrees: T) -> T {
     return degrees / 180.0 * .pi
 }
-
-// These versions use parabola segments (hermite curves)
-public func easeOutFaster<T: BinaryFloatingPoint>(_ t: T) -> T { return 2 * t - t * t }
-public func easeInFaster<T: BinaryFloatingPoint>(_ t: T) -> T { return t * t }
-public func easeInAndOutFaster<T: BinaryFloatingPoint>(_ t: T) -> T { return t * t * (3.0 - 2.0 * t) }
-
-// These versions use sine curve segments, and are more computationally intensive
-public func easeOut(_ t: Float) -> Float { return sin(t * .pi / 2) }
-public func easeIn(_ t: Float) -> Float { return 1.0 - cos(t * .pi / 2) }
-public func easeInAndOut(_ t: Float) -> Float { return 0.5 * (1 + sin(.pi * (t - 0.5))) }
-
-public func easeOut(_ t: Double) -> Double { return sin(t * .pi / 2) }
-public func easeIn(_ t: Double) -> Double { return 1.0 - cos(t * .pi / 2) }
-public func easeInAndOut(_ t: Double) -> Double { return 0.5 * (1 + sin(.pi * (t - 0.5))) }
-
-#if !os(Linux)
-    public func easeOut(_ t: CGFloat) -> CGFloat { return sin(t * .pi / 2) }
-    public func easeIn(_ t: CGFloat) -> CGFloat { return 1.0 - cos(t * .pi / 2) }
-    public func easeInAndOut(_ t: CGFloat) -> CGFloat { return 0.5 * (1 + sin(.pi * (t - 0.5))) }
-#endif
-
-public func triangleUpThenDown<T: BinaryFloatingPoint>(_ t: T) -> T {
-    return t < 0.5 ? t.lerped(from: 0.0..0.5, to: 0.0..1.0) : t.lerped(from: 0.5..1.0, to: 1.0..0.0)
-}
-
-public func triangleDownThenUp<T: BinaryFloatingPoint>(_ t: T) -> T {
-    return t < 0.5 ? t.lerped(from: 0.0..0.5, to: 1.0..0.0) : t.lerped(from: 0.5..1.0, to: 0.0..1.0)
-}
-
-public func sawtoothUp<T: BinaryFloatingPoint>(_ t: T) -> T { return t }
-public func sawtoothDown<T: BinaryFloatingPoint>(_ t: T) -> T { return 1.0 - t }
-
-public func sineUpThenDown(_ t: Float) -> Float { return sin(t * .pi * 2) * 0.5 + 0.5 }
-public func sineDownThenUp(_ t: Float) -> Float { return 1.0 - sin(t * .pi * 2) * 0.5 + 0.5 }
-public func cosineUpThenDown(_ t: Float) -> Float { return 1.0 - cos(t * .pi * 2) * 0.5 + 0.5 }
-public func cosineDownThenUp(_ t: Float) -> Float { return cos(t * .pi * 2) * 0.5 + 0.5 }
 public func miterLength(lineWidth: Float, phi: Float) -> Float { return lineWidth * (1.0 / sin(phi / 2.0)) }
-
-public func sineUpThenDown(_ t: Double) -> Double { return sin(t * .pi * 2) * 0.5 + 0.5 }
-public func sineDownThenUp(_ t: Double) -> Double { return 1.0 - sin(t * .pi * 2) * 0.5 + 0.5 }
-public func cosineUpThenDown(_ t: Double) -> Double { return 1.0 - cos(t * .pi * 2) * 0.5 + 0.5 }
-public func cosineDownThenUp(_ t: Double) -> Double { return cos(t * .pi * 2) * 0.5 + 0.5 }
 public func miterLength(lineWidth: Double, phi: Double) -> Double { return lineWidth * (1.0 / sin(phi / 2.0)) }
 
 #if !os(Linux)
-    public func sineUpThenDown(_ t: CGFloat) -> CGFloat { return sin(t * .pi * 2) * 0.5 + 0.5 }
-    public func sineDownThenUp(_ t: CGFloat) -> CGFloat { return 1.0 - sin(t * .pi * 2) * 0.5 + 0.5 }
-    public func cosineUpThenDown(_ t: CGFloat) -> CGFloat { return 1.0 - cos(t * .pi * 2) * 0.5 + 0.5 }
-    public func cosineDownThenUp(_ t: CGFloat) -> CGFloat { return cos(t * .pi * 2) * 0.5 + 0.5 }
-    public func miterLength(lineWidth: CGFloat, phi: CGFloat) -> CGFloat { return lineWidth * (1.0 / sin(phi / 2.0)) }
+public func miterLength(lineWidth: CGFloat, phi: CGFloat) -> CGFloat { return lineWidth * (1.0 / sin(phi / 2.0)) }
 #endif
 
 public func angleOfLineSegment(_ p1: Point, _ p2: Point) -> Double {

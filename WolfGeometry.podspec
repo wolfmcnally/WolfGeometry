@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'WolfGeometry'
-    s.version          = '2.1.1'
+    s.version          = '3.0.0'
     s.summary          = 'Swift methods, types, and extensions for doing geometrical calculations.'
 
     s.homepage         = 'https://github.com/wolfmcnally/WolfGeometry'
