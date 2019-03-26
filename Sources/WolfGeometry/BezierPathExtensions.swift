@@ -88,6 +88,9 @@ extension OSBezierPath {
 
                 case .closePath:
                     path.closeSubpath()
+
+                @unknown default:
+                    fatalError()
                 }
             }
 

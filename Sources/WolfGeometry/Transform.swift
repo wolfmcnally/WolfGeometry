@@ -253,8 +253,8 @@ public struct Transform : Hashable, CustomStringConvertible {
         self = transform.concatenated(self)
     }
 
-    public var hashValue : Int {
-        return Int(m11 + m12 + m21 + m22 + tX + tY)
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(m11 + m12 + m21 + m22 + tX + tY)
     }
 
     public var description: String {

@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 import Foundation
+import CoreGraphics
 
 public struct IntSize {
     public var width: Int
