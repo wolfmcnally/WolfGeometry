@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 import CoreGraphics
-import WolfNumerics
+import WolfCore
 
 extension CGVector {
     public init(angle theta: CGFloat, magnitude: CGFloat) {

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'WolfGeometry'
-    s.version          = '4.0.0'
+    s.version          = '4.0.1'
     s.summary          = 'Swift methods, types, and extensions for doing geometrical calculations.'
 
     s.homepage         = 'https://github.com/wolfmcnally/WolfGeometry'
@@ -18,8 +18,5 @@ Pod::Spec.new do |s|
 
     s.module_name = 'WolfGeometry'
 
-    s.dependency 'ExtensibleEnumeratedName'
-    s.dependency 'WolfNumerics'
-    s.dependency 'WolfStrings'
-    s.dependency 'WolfFoundation'
+    s.dependency 'WolfCore'
 end

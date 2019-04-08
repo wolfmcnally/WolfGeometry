@@ -29,7 +29,7 @@
 #endif
 
 import Foundation
-import WolfNumerics
+import WolfCore
 
 public struct Vector {
     public var dx: Double = 0

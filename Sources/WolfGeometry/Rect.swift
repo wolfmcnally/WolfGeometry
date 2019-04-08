@@ -29,7 +29,7 @@
 #endif
 
 import Foundation
-import WolfNumerics
+import WolfCore
 
 public struct Rect {
     public var origin: Point

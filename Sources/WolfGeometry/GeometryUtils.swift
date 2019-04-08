@@ -32,7 +32,7 @@
     import CoreGraphics
 #endif
 
-import WolfNumerics
+import WolfCore
 
 public let piOverTwo: Double = .pi / 2.0
 public let twoPi: Double = .pi * 2.0

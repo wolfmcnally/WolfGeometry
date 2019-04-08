@@ -23,8 +23,7 @@
 //  SOFTWARE.
 
 import CoreGraphics
-import WolfStrings
-import WolfNumerics
+import WolfCore
 
 extension CGPoint {
     public init(vector: CGVector) {
