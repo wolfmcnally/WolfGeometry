@@ -53,7 +53,7 @@ public struct Size {
         }
 
         public var cgSize: CGSize {
-            CGSize(width: CGFloat(width), height: CGFloat(height))
+            return CGSize(width: CGFloat(width), height: CGFloat(height))
         }
     }
 #endif
@@ -68,10 +68,12 @@ extension Size {
         height = vector.dy
     }
 
-    public var aspect: Double { width / height }
+    public var aspect: Double {
+        return width / height
+    }
 
     public var bounds: Rect {
-        Rect(origin: .zero, size: self)
+        return Rect(origin: .zero, size: self)
     }
 
     public func scaleForAspectFit(within size: Size) -> Double {
@@ -105,11 +107,11 @@ extension Size {
     }
 
     public var max: Double {
-        Swift.max(width, height)
+        return Swift.max(width, height)
     }
 
     public var min: Double {
-        Swift.min(width, height)
+        return Swift.min(width, height)
     }
 }
 
@@ -138,24 +140,24 @@ extension Size: Equatable {
 }
 
 public func == (lhs: Size, rhs: Size) -> Bool {
-    lhs.width == rhs.width && lhs.height == rhs.height
+    return lhs.width == rhs.width && lhs.height == rhs.height
 }
 
 extension Size {
-    public var isEmpty: Bool { width == 0.0 || height == 0.0 }
+    public var isEmpty: Bool { return width == 0.0 || height == 0.0 }
 }
 
 public func * (lhs: Size, rhs: Double) -> Size {
-    Size(width: lhs.width * rhs, height: lhs.height * rhs)
+    return Size(width: lhs.width * rhs, height: lhs.height * rhs)
 }
 
 public func / (lhs: Size, rhs: Double) -> Size {
-    Size(width: lhs.width / rhs, height: lhs.height / rhs)
+    return Size(width: lhs.width / rhs, height: lhs.height / rhs)
 }
 
 extension Size: Interpolable {
     public func interpolated(to other: Size, at frac: Frac) -> Size {
-        Size(width: width.interpolated(to: other.width, at: frac),
+        return Size(width: width.interpolated(to: other.width, at: frac),
                     height: height.interpolated(to: other.height, at: frac))
     }
 }

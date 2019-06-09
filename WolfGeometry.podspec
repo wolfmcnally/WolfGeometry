@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
     s.source_files = 'Sources/WolfGeometry/**/*'
 
-    s.swift_version = '5.1'
+    s.swift_version = '5.0'
 
     s.ios.deployment_target = '9.3'
     s.macos.deployment_target = '10.13'

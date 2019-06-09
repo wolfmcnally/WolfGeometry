@@ -27,16 +27,16 @@ import WolfCore
 
 extension CGRect {
     // Corners
-    public var minXminY: CGPoint { CGPoint(x: minX, y: minY) }
-    public var maxXminY: CGPoint { CGPoint(x: maxX, y: minY) }
-    public var maxXmaxY: CGPoint { CGPoint(x: maxX, y: maxY) }
-    public var minXmaxY: CGPoint { CGPoint(x: minX, y: maxY) }
+    public var minXminY: CGPoint { return CGPoint(x: minX, y: minY) }
+    public var maxXminY: CGPoint { return CGPoint(x: maxX, y: minY) }
+    public var maxXmaxY: CGPoint { return CGPoint(x: maxX, y: maxY) }
+    public var minXmaxY: CGPoint { return CGPoint(x: minX, y: maxY) }
 
     // Sides
-    public var midXminY: CGPoint { CGPoint(x: midX, y: minY) }
-    public var midXmaxY: CGPoint { CGPoint(x: midX, y: maxY) }
-    public var maxXmidY: CGPoint { CGPoint(x: maxX, y: midY) }
-    public var minXmidY: CGPoint { CGPoint(x: minX, y: midY) }
+    public var midXminY: CGPoint { return CGPoint(x: midX, y: minY) }
+    public var midXmaxY: CGPoint { return CGPoint(x: midX, y: maxY) }
+    public var maxXmidY: CGPoint { return CGPoint(x: maxX, y: midY) }
+    public var minXmidY: CGPoint { return CGPoint(x: minX, y: midY) }
 
     // Already provided by CGRect:
     //  public var minX
@@ -47,7 +47,7 @@ extension CGRect {
     //  public var maxY
 
     // Center
-    public var midXmidY: CGPoint { CGPoint(x: midX, y: midY) }
+    public var midXmidY: CGPoint { return CGPoint(x: midX, y: midY) }
 
     // Dimensions
 
@@ -58,41 +58,41 @@ extension CGRect {
 
 extension CGRect {
     // Corners
-    public func settingMinXminY(_ p: CGPoint) -> CGRect { CGRect(origin: p, size: size) }
-    public func settingMaxXminY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x - size.width, y: p.y), size: size) }
-    public func settingMaxXmaxY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x - size.width, y: p.y - size.height), size: size) }
-    public func settingMinXmaxY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x, y: p.y - size.height), size: size) }
+    public func settingMinXminY(_ p: CGPoint) -> CGRect { return CGRect(origin: p, size: size) }
+    public func settingMaxXminY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x - size.width, y: p.y), size: size) }
+    public func settingMaxXmaxY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x - size.width, y: p.y - size.height), size: size) }
+    public func settingMinXmaxY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x, y: p.y - size.height), size: size) }
 
     // Sides
-    public func settingMinX(_ x: CGFloat) -> CGRect { CGRect(origin: CGPoint(x: x, y: origin.y), size: size) }
-    public func settingMaxX(_ x: CGFloat) -> CGRect { CGRect(origin: CGPoint(x: x - size.width, y: origin.y), size: size) }
-    public func settingMidX(_ x: CGFloat) -> CGRect { CGRect(origin: CGPoint(x: x - size.width / 2, y: origin.y), size: size) }
+    public func settingMinX(_ x: CGFloat) -> CGRect { return CGRect(origin: CGPoint(x: x, y: origin.y), size: size) }
+    public func settingMaxX(_ x: CGFloat) -> CGRect { return CGRect(origin: CGPoint(x: x - size.width, y: origin.y), size: size) }
+    public func settingMidX(_ x: CGFloat) -> CGRect { return CGRect(origin: CGPoint(x: x - size.width / 2, y: origin.y), size: size) }
 
-    public func settingMinY(_ y: CGFloat) -> CGRect { CGRect(origin: CGPoint(x: origin.x, y: y), size: size) }
-    public func settingMaxY(_ y: CGFloat) -> CGRect { CGRect(origin: CGPoint(x: origin.x, y: y - size.height), size: size) }
-    public func settingMidY(_ y: CGFloat) -> CGRect { CGRect(origin: CGPoint(x: origin.x, y: y - size.height / 2), size: size) }
+    public func settingMinY(_ y: CGFloat) -> CGRect { return CGRect(origin: CGPoint(x: origin.x, y: y), size: size) }
+    public func settingMaxY(_ y: CGFloat) -> CGRect { return CGRect(origin: CGPoint(x: origin.x, y: y - size.height), size: size) }
+    public func settingMidY(_ y: CGFloat) -> CGRect { return CGRect(origin: CGPoint(x: origin.x, y: y - size.height / 2), size: size) }
 
-    public func settingMidXminY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x - size.width / 2, y: p.y), size: size) }
-    public func settingMidXmaxY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x - size.width / 2, y: p.y - size.height), size: size) }
-    public func settingMaxXmidY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x - size.width, y: p.y - size.height / 2), size: size) }
-    public func settingMinXmidY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x, y: p.y - size.height / 2), size: size) }
+    public func settingMidXminY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x - size.width / 2, y: p.y), size: size) }
+    public func settingMidXmaxY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x - size.width / 2, y: p.y - size.height), size: size) }
+    public func settingMaxXmidY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x - size.width, y: p.y - size.height / 2), size: size) }
+    public func settingMinXmidY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x, y: p.y - size.height / 2), size: size) }
 
     // Center
-    public func settingMidXmidY(_ p: CGPoint) -> CGRect { CGRect(origin: CGPoint(x: p.x - size.width / 2, y: p.y - size.height / 2), size: size) }
+    public func settingMidXmidY(_ p: CGPoint) -> CGRect { return CGRect(origin: CGPoint(x: p.x - size.width / 2, y: p.y - size.height / 2), size: size) }
 
     // Dimensions
-    public func settingWidth(_ w: CGFloat) -> CGRect { CGRect(origin: origin, size: CGSize(width: w, height: size.height)) }
-    public func settingHeight(_ h: CGFloat) -> CGRect { CGRect(origin: origin, size: CGSize(width: size.width, height: h)) }
+    public func settingWidth(_ w: CGFloat) -> CGRect { return CGRect(origin: origin, size: CGSize(width: w, height: size.height)) }
+    public func settingHeight(_ h: CGFloat) -> CGRect { return CGRect(origin: origin, size: CGSize(width: size.width, height: h)) }
 }
 
 extension CGRect {
     // These functions can produce rectangles that have a different size.
 
     // Corners
-    public func settingMinXminYIndependent(_ p: CGPoint) -> CGRect { settingMinXIndependent(p.x).settingMinYIndependent(p.y) }
-    public func settingMaxXminYIndependent(_ p: CGPoint) -> CGRect { settingMaxXIndependent(p.x).settingMinYIndependent(p.y) }
-    public func settingMaxXmaxYIndependent(_ p: CGPoint) -> CGRect { settingMaxXIndependent(p.x).settingMaxYIndependent(p.y) }
-    public func settingMinXmaxYIndependent(_ p: CGPoint) -> CGRect { settingMinXIndependent(p.x).settingMaxYIndependent(p.y) }
+    public func settingMinXminYIndependent(_ p: CGPoint) -> CGRect { return settingMinXIndependent(p.x).settingMinYIndependent(p.y) }
+    public func settingMaxXminYIndependent(_ p: CGPoint) -> CGRect { return settingMaxXIndependent(p.x).settingMinYIndependent(p.y) }
+    public func settingMaxXmaxYIndependent(_ p: CGPoint) -> CGRect { return settingMaxXIndependent(p.x).settingMaxYIndependent(p.y) }
+    public func settingMinXmaxYIndependent(_ p: CGPoint) -> CGRect { return settingMinXIndependent(p.x).settingMaxYIndependent(p.y) }
 
     // Sides
     public func settingMinXIndependent(_ x: CGFloat) -> CGRect { let dx = minX - x; return settingMinX(x).settingWidth(width + dx).standardized }
@@ -174,7 +174,7 @@ extension CGRect {
 
 extension CGRect: Interpolable {
     public func interpolated(to other: CGRect, at frac: Frac) -> CGRect {
-        CGRect(origin: origin.interpolated(to: other.origin, at: frac),
+        return CGRect(origin: origin.interpolated(to: other.origin, at: frac),
                     size: size.interpolated(to: other.size, at: frac))
     }
 }

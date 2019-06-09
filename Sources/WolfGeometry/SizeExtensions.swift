@@ -47,7 +47,9 @@ extension CGSize {
         self.init(width: vector.dx, height: vector.dy)
     }
 
-    public var aspect: CGFloat { width / height }
+    public var aspect: CGFloat {
+        return width / height
+    }
 
     public func scaleForAspectFit(within size: CGSize) -> CGFloat {
         if size.width != noSize && size.height != noSize {
@@ -80,32 +82,38 @@ extension CGSize {
     }
 
     public var max: CGFloat {
-        Swift.max(width, height)
+        return Swift.max(width, height)
     }
 
     public var min: CGFloat {
-        Swift.min(width, height)
+        return Swift.min(width, height)
     }
 
     public func swapped() -> CGSize {
-        CGSize(width: height, height: width)
+        return CGSize(width: height, height: width)
     }
 
     public var bounds: CGRect {
-        CGRect(origin: .zero, size: self)
+        return CGRect(origin: .zero, size: self)
     }
 
     public var asPoint: CGPoint {
-        CGPoint(x: width, y: height)
+        return CGPoint(x: width, y: height)
     }
 }
 
 extension CGSize {
-    public var isLandscape: Bool { width > height }
+    public var isLandscape: Bool {
+        return width > height
+    }
 
-    public var isPortrait: Bool { height > width }
+    public var isPortrait: Bool {
+        return height > width
+    }
 
-    public var isSquare: Bool { width == height }
+    public var isSquare: Bool {
+        return width == height
+    }
 
     public var debugSummary: String {
         let joiner = Joiner(left: "(", right: ")")
@@ -116,35 +124,35 @@ extension CGSize {
 
 extension CGSize: Interpolable {
     public func interpolated(to other: CGSize, at frac: Frac) -> CGSize {
-        CGSize(width: width.interpolated(to: other.width, at: frac),
+        return CGSize(width: width.interpolated(to: other.width, at: frac),
                       height: height.interpolated(to: other.height, at: frac))
     }
 }
 
 public func + (left: CGSize, right: CGSize) -> CGVector {
-    CGVector(dx: left.width + right.width, dy: left.height + right.height)
+    return CGVector(dx: left.width + right.width, dy: left.height + right.height)
 }
 
 public func - (left: CGSize, right: CGSize) -> CGVector {
-    CGVector(dx: left.width - right.width, dy: left.height - right.height)
+    return CGVector(dx: left.width - right.width, dy: left.height - right.height)
 }
 
 public func + (left: CGSize, right: CGVector) -> CGSize {
-    CGSize(width: left.width + right.dx, height: left.height + right.dy)
+    return CGSize(width: left.width + right.dx, height: left.height + right.dy)
 }
 
 public func - (left: CGSize, right: CGVector) -> CGSize {
-    CGSize(width: left.width - right.dx, height: left.height - right.dy)
+    return CGSize(width: left.width - right.dx, height: left.height - right.dy)
 }
 
 public func + (left: CGVector, right: CGSize) -> CGSize {
-    CGSize(width: left.dx + right.width, height: left.dy + right.height)
+    return CGSize(width: left.dx + right.width, height: left.dy + right.height)
 }
 
 public func - (left: CGVector, right: CGSize) -> CGSize {
-    CGSize(width: left.dx - right.width, height: left.dy - right.height)
+    return CGSize(width: left.dx - right.width, height: left.dy - right.height)
 }
 
 public func * (left: CGSize, right: CGFloat) -> CGSize {
-    CGSize(width: left.width * right, height: left.height * right)
+    return CGSize(width: left.width * right, height: left.height * right)
 }

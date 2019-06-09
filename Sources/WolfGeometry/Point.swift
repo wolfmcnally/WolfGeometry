@@ -64,12 +64,16 @@ extension Point {
         y = center.y + sin(theta) * radius
     }
 
-    public var magnitude: Double { hypot(x, y) }
+    public var magnitude: Double {
+        return hypot(x, y)
+    }
 
-    public var angle: Double { atan2(y, x) }
+    public var angle: Double {
+        return atan2(y, x)
+    }
 
     public func distance(to point: Point) -> Double {
-        (point - self).magnitude
+        return (point - self).magnitude
     }
 
     public func rotated(by theta: Double, aroundCenter center: Point) -> Point {
@@ -103,12 +107,12 @@ extension Point {
 
 extension Point {
     public static func min(_ p1: Point, _ p2: Point) -> Point {
-        Point(x: p1.x < p2.x ? p1.x : p2.x,
+        return Point(x: p1.x < p2.x ? p1.x : p2.x,
                      y: p1.y < p2.y ? p1.y : p2.y)
     }
 
     public static func max(_ p1: Point, _ p2: Point) -> Point {
-        Point(x: p1.x > p2.x ? p1.x : p2.x,
+        return Point(x: p1.x > p2.x ? p1.x : p2.x,
                      y: p1.y > p2.y ? p1.y : p2.y)
     }
 }
@@ -163,27 +167,27 @@ extension Point {
 
 extension Point: Equatable {
     static public func == (lhs: Point, rhs: Point) -> Bool {
-        lhs.x == rhs.x && lhs.y == rhs.y
+        return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 
 extension Point: Interpolable {
     public func interpolated(to other: Point, at frac: Frac) -> Point {
-        Point(x: x.interpolated(to: other.x, at: frac),
+        return Point(x: x.interpolated(to: other.x, at: frac),
                      y: y.interpolated(to: other.y, at: frac))
     }
 }
 
 public prefix func - (rhs: Point) -> Point {
-    Point(x: -rhs.x, y: -rhs.y)
+    return Point(x: -rhs.x, y: -rhs.y)
 }
 
 public func - (lhs: Point, rhs: Point) -> Vector {
-    Vector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
+    return Vector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
 }
 
 public func + (lhs: Point, rhs: Vector) -> Point {
-    Point(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
+    return Point(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
 }
 
 public func += (lhs: inout Point, rhs: Vector) {
@@ -191,7 +195,7 @@ public func += (lhs: inout Point, rhs: Vector) {
 }
 
 public func - (lhs: Point, rhs: Vector) -> Point {
-    Point(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
+    return Point(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
 }
 
 public func -= (lhs: inout Point, rhs: Vector) {
@@ -199,27 +203,27 @@ public func -= (lhs: inout Point, rhs: Vector) {
 }
 
 public func + (lhs: Vector, rhs: Point) -> Point {
-    Point(x: lhs.dx + rhs.x, y: lhs.dy + rhs.y)
+    return Point(x: lhs.dx + rhs.x, y: lhs.dy + rhs.y)
 }
 
 public func - (lhs: Vector, rhs: Point) -> Point {
-    Point(x: lhs.dx - rhs.x, y: lhs.dy - rhs.y)
+    return Point(x: lhs.dx - rhs.x, y: lhs.dy - rhs.y)
 }
 
 public func * (lhs: Point, rhs: Double) -> Point {
-    Point(x: lhs.x * rhs, y: lhs.y * rhs)
+    return Point(x: lhs.x * rhs, y: lhs.y * rhs)
 }
 
 public func * (lhs: Double, rhs: Point) -> Point {
-    Point(x: lhs * rhs.x, y: lhs * rhs.y)
+    return Point(x: lhs * rhs.x, y: lhs * rhs.y)
 }
 
 public func / (lhs: Point, rhs: Double) -> Point {
-    Point(x: lhs.x / rhs, y: lhs.y / rhs)
+    return Point(x: lhs.x / rhs, y: lhs.y / rhs)
 }
 
 public func + (lhs: Point, rhs: Point) -> Point {
-    Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
 }
 
 #if canImport(CoreGraphics)

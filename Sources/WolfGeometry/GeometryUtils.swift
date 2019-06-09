@@ -40,36 +40,36 @@ public let twoPi: Double = .pi * 2.0
 public let a: Double = sin(.pi)
 
 public func degrees<T: BinaryFloatingPoint>(for radians: T) -> T {
-    radians / .pi * 180.0
+    return radians / .pi * 180.0
 }
 
 public func radians<T: BinaryFloatingPoint>(for degrees: T) -> T {
-    degrees / 180.0 * .pi
+    return degrees / 180.0 * .pi
 }
-public func miterLength(lineWidth: Float, phi: Float) -> Float { lineWidth * (1.0 / sin(phi / 2.0)) }
-public func miterLength(lineWidth: Double, phi: Double) -> Double { lineWidth * (1.0 / sin(phi / 2.0)) }
+public func miterLength(lineWidth: Float, phi: Float) -> Float { return lineWidth * (1.0 / sin(phi / 2.0)) }
+public func miterLength(lineWidth: Double, phi: Double) -> Double { return lineWidth * (1.0 / sin(phi / 2.0)) }
 
 #if !os(Linux)
-public func miterLength(lineWidth: CGFloat, phi: CGFloat) -> CGFloat { lineWidth * (1.0 / sin(phi / 2.0)) }
+public func miterLength(lineWidth: CGFloat, phi: CGFloat) -> CGFloat { return lineWidth * (1.0 / sin(phi / 2.0)) }
 #endif
 
 public func angleOfLineSegment(_ p1: Point, _ p2: Point) -> Double {
-    Vector(p1, p2).angle
+    return Vector(p1, p2).angle
 }
 
 public func angleBetweenVectors(_ v1: Vector, _ v2: Vector) -> Double {
-    atan2(cross(v1, v2), dot(v1, v2))
+    return atan2(cross(v1, v2), dot(v1, v2))
 }
 
 public func angleAtVertex(o: Point, _ p1: Point, _ p2: Point) -> Double {
-    angleBetweenVectors(Vector(o, p1), Vector(o, p2))
+    return angleBetweenVectors(Vector(o, p1), Vector(o, p2))
 }
 
 //
 // https://math.stackexchange.com/questions/405966/if-i-have-three-points-is-there-an-easy-way-to-tell-if-they-are-collinear
 //
 public func isCollinear(p1: Point, p2: Point, p3: Point, within tolerance: Double) -> Bool {
-    abs((p3.y - p2.y) * (p1.x - p3.x) - (p1.y - p3.y) * (p3.x - p2.x)) < tolerance
+    return abs((p3.y - p2.y) * (p1.x - p3.x) - (p1.y - p3.y) * (p3.x - p2.x)) < tolerance
 }
 
 //

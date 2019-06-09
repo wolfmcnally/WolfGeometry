@@ -37,5 +37,5 @@
 postfix operator °
 
 public postfix func °<T: BinaryFloatingPoint>(rhs: T) -> T {
-    radians(for: rhs)
+    return radians(for: rhs)
 }

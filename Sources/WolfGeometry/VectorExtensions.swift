@@ -42,9 +42,13 @@ extension CGVector {
         self.init(dx: size.width, dy: size.height)
     }
 
-    public var magnitude: CGFloat { hypot(dx, dy) }
+    public var magnitude: CGFloat {
+        return hypot(dx, dy)
+    }
 
-    public var angle: CGFloat { atan2(dy, dx) }
+    public var angle: CGFloat {
+        return atan2(dy, dx)
+    }
 
     public func normalized() -> CGVector {
         let m = magnitude
@@ -62,40 +66,40 @@ extension CGVector {
 }
 
 public func - (lhs: CGVector, rhs: CGVector) -> CGVector {
-    CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
+    return CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
 }
 
 public func + (lhs: CGVector, rhs: CGVector) -> CGVector {
-    CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
+    return CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
 }
 
 public func / (lhs: CGVector, rhs: CGFloat) -> CGVector {
-    CGVector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
+    return CGVector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
 }
 
 public func / (lhs: CGVector, rhs: CGVector) -> CGVector {
-    CGVector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
+    return CGVector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
 }
 
 public func * (lhs: CGVector, rhs: CGFloat) -> CGVector {
-    CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
+    return CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
 }
 
 public func * (lhs: CGVector, rhs: CGVector) -> CGVector {
-    CGVector(dx: lhs.dx * rhs.dx, dy: lhs.dy * rhs.dy)
+    return CGVector(dx: lhs.dx * rhs.dx, dy: lhs.dy * rhs.dy)
 }
 
 public func dot(v1: CGVector, _ v2: CGVector) -> CGFloat {
-    v1.dx * v2.dx + v1.dy * v2.dy
+    return v1.dx * v2.dx + v1.dy * v2.dy
 }
 
 public func cross(v1: CGVector, _ v2: CGVector) -> CGFloat {
-    v1.dx * v2.dy - v1.dy * v2.dx
+    return v1.dx * v2.dy - v1.dy * v2.dx
 }
 
 extension CGVector: Interpolable {
     public func interpolated(to other: CGVector, at frac: Frac) -> CGVector {
-        CGVector(dx: dx.interpolated(to: other.dx, at: frac),
+        return CGVector(dx: dx.interpolated(to: other.dx, at: frac),
                         dy: dy.interpolated(to: other.dy, at: frac))
     }
 }

@@ -31,31 +31,31 @@ public struct IntRect {
         self.size = size
     }
 
-    public var width: Int { size.width }
-    public var height: Int { size.height }
+    public var width: Int { return size.width }
+    public var height: Int { return size.height }
 
-    public var min: IntPoint { origin }
-    public var max: IntPoint { IntPoint(x: maxX, y: maxY) }
-    public var mid: IntPoint { IntPoint(x: midX, y: midY) }
+    public var min: IntPoint { return origin }
+    public var max: IntPoint { return IntPoint(x: maxX, y: maxY) }
+    public var mid: IntPoint { return IntPoint(x: midX, y: midY) }
 
-    public var minX: Int { origin.x }
-    public var minY: Int { origin.y }
+    public var minX: Int { return origin.x }
+    public var minY: Int { return origin.y }
 
-    public var maxX: Int { origin.x + size.width - 1 }
-    public var maxY: Int { origin.y + size.height - 1 }
+    public var maxX: Int { return origin.x + size.width - 1 }
+    public var maxY: Int { return origin.y + size.height - 1 }
 
-    public var midX: Int { origin.x + size.width / 2 }
-    public var midY: Int { origin.y + size.height / 2 }
+    public var midX: Int { return origin.x + size.width / 2 }
+    public var midY: Int { return origin.y + size.height / 2 }
 
-    public var rangeX: CountableClosedRange<Int> { minX ... maxX }
-    public var rangeY: CountableClosedRange<Int> { minY ... maxY }
+    public var rangeX: CountableClosedRange<Int> { return minX ... maxX }
+    public var rangeY: CountableClosedRange<Int> { return minY ... maxY }
 
-    public func randomX() -> Int { origin.x + size.randomX() }
-    public func randomY() -> Int { origin.y + size.randomY() }
-    public func randomPoint() -> IntPoint { IntPoint(x: randomX(), y: randomY()) }
+    public func randomX() -> Int { return origin.x + size.randomX() }
+    public func randomY() -> Int { return origin.y + size.randomY() }
+    public func randomPoint() -> IntPoint { return IntPoint(x: randomX(), y: randomY()) }
 
     public func isValidPoint(_ p: IntPoint) -> Bool {
-        p.x >= minX && p.y >= minY && p.x <= maxX && p.y <= maxY
+        return p.x >= minX && p.y >= minY && p.x <= maxX && p.y <= maxY
     }
 
     public func checkPoint(_ point: IntPoint) {
@@ -78,7 +78,7 @@ extension IntRect {
 
 extension IntRect: Equatable {
     public static func == (lhs: IntRect, rhs: IntRect) -> Bool {
-        lhs.origin == rhs.origin && lhs.size == rhs.size
+        return lhs.origin == rhs.origin && lhs.size == rhs.size
     }
 }
 

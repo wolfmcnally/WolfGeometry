@@ -87,9 +87,13 @@ extension Vector {
         dy = size.height
     }
 
-    public var magnitude: Double { hypot(dx, dy) }
+    public var magnitude: Double {
+        return hypot(dx, dy)
+    }
 
-    public var angle: Double { atan2(dy, dx) }
+    public var angle: Double {
+        return atan2(dy, dx)
+    }
 
     public var normalized: Vector {
         let m = magnitude
@@ -112,7 +116,7 @@ extension Vector {
     }
 
     public var swapped: Vector {
-        Vector(dx: dy, dy: dx)
+        return Vector(dx: dy, dy: dx)
     }
 
     public mutating func swap() {
@@ -124,12 +128,12 @@ extension Vector {
 
 extension Vector {
     public static func min(_ v1: Vector, _ v2: Vector) -> Vector {
-        Vector(dx: v1.dx < v2.dx ? v1.dx : v2.dx,
+        return Vector(dx: v1.dx < v2.dx ? v1.dx : v2.dx,
                      dy: v1.dy < v2.dy ? v1.dy : v2.dy)
     }
 
     public static func max(_ v1: Vector, _ v2: Vector) -> Vector {
-        Vector(dx: v1.dx > v2.dx ? v1.dx : v2.dx,
+        return Vector(dx: v1.dx > v2.dx ? v1.dx : v2.dx,
                      dy: v1.dy > v2.dy ? v1.dy : v2.dy)
     }
 }
@@ -166,52 +170,52 @@ extension Vector: Equatable {
 }
 
 public func == (lhs: Vector, rhs: Vector) -> Bool {
-    lhs.dx == rhs.dx && lhs.dy == rhs.dy
+    return lhs.dx == rhs.dx && lhs.dy == rhs.dy
 }
 
 public prefix func - (v: Vector) -> Vector {
-    Vector(dx: -v.dx, dy: -v.dy)
+    return Vector(dx: -v.dx, dy: -v.dy)
 }
 
 public func + (lhs: Vector, rhs: Vector) -> Vector {
-    Vector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
+    return Vector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
 }
 
 public func - (lhs: Vector, rhs: Vector) -> Vector {
-    Vector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
+    return Vector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
 }
 
 public func / (lhs: Vector, rhs: Double) -> Vector {
-    Vector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
+    return Vector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
 }
 
 public func / (lhs: Vector, rhs: Vector) -> Vector {
-    Vector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
+    return Vector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
 }
 
 public func * (lhs: Vector, rhs: Double) -> Vector {
-    Vector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
+    return Vector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
 }
 
 public func * (lhs: Double, rhs: Vector) -> Vector {
-    Vector(dx: lhs * rhs.dx, dy: lhs * rhs.dy)
+    return Vector(dx: lhs * rhs.dx, dy: lhs * rhs.dy)
 }
 
 public func * (lhs: Vector, rhs: Vector) -> Vector {
-    Vector(dx: lhs.dx * rhs.dx, dy: lhs.dy * rhs.dy)
+    return Vector(dx: lhs.dx * rhs.dx, dy: lhs.dy * rhs.dy)
 }
 
 public func dot(_ v1: Vector, _ v2: Vector) -> Double {
-    v1.dx * v2.dx + v1.dy * v2.dy
+    return v1.dx * v2.dx + v1.dy * v2.dy
 }
 
 public func cross(_ v1: Vector, _ v2: Vector) -> Double {
-    v1.dx * v2.dy - v1.dy * v2.dx
+    return v1.dx * v2.dy - v1.dy * v2.dx
 }
 
 extension Vector: Interpolable {
     public func interpolated(to other: Vector, at frac: Frac) -> Vector {
-        Vector(dx: dx.interpolated(to: other.dx, at: frac),
+        return Vector(dx: dx.interpolated(to: other.dx, at: frac),
                         dy: dy.interpolated(to: other.dy, at: frac))
     }
 }

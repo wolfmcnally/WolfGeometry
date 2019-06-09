@@ -36,12 +36,12 @@ public struct IntPoint {
 
 extension IntPoint {
     public var point: Point {
-        Point(x: Double(x), y: Double(y))
+        return Point(x: Double(x), y: Double(y))
     }
 }
 
 public func + (lhs: IntPoint, rhs: IntOffset) -> IntPoint {
-    IntPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
+    return IntPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
 }
 
 public func += (lhs: inout IntPoint, rhs: IntOffset) {
@@ -51,14 +51,14 @@ public func += (lhs: inout IntPoint, rhs: IntOffset) {
 extension IntPoint: CustomStringConvertible {
     public var description: String {
         get {
-            "IntPoint(x:\(x) y:\(y))"
+            return "IntPoint(x:\(x) y:\(y))"
         }
     }
 }
 
 extension IntPoint: Equatable {
     public static func == (lhs: IntPoint, rhs: IntPoint) -> Bool {
-        lhs.x == rhs.x && lhs.y == rhs.y
+        return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 

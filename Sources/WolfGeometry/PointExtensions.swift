@@ -34,12 +34,16 @@ extension CGPoint {
         self.init(x: center.x + cos(theta) * radius, y: center.y + sin(theta) * radius)
     }
 
-    public var magnitude: CGFloat { hypot(x, y) }
+    public var magnitude: CGFloat {
+        return hypot(x, y)
+    }
 
-    public var angle: CGFloat { atan2(y, x) }
+    public var angle: CGFloat {
+        return atan2(y, x)
+    }
 
     public func distance(to point: CGPoint) -> CGFloat {
-        (point - self).magnitude
+        return (point - self).magnitude
     }
 
     public func rotated(by theta: CGFloat, aroundCenter center: CGPoint) -> CGPoint {
@@ -50,13 +54,13 @@ extension CGPoint {
     }
 
     public var asSize: CGSize {
-        CGSize(width: x, height: y)
+        return CGSize(width: x, height: y)
     }
 }
 
 extension CGPoint {
-    public func settingX(_ newX: CGFloat) -> CGPoint { CGPoint(x: newX, y: y) }
-    public func settingY(_ newY: CGFloat) -> CGPoint { CGPoint(x: x, y: newY) }
+    public func settingX(_ newX: CGFloat) -> CGPoint { return CGPoint(x: newX, y: y) }
+    public func settingY(_ newY: CGFloat) -> CGPoint { return CGPoint(x: x, y: newY) }
 }
 
 extension CGPoint {
@@ -69,31 +73,31 @@ extension CGPoint {
 
 extension CGPoint: Interpolable {
     public func interpolated(to other: CGPoint, at frac: Frac) -> CGPoint {
-        CGPoint(x: x.interpolated(to: other.x, at: frac),
+        return CGPoint(x: x.interpolated(to: other.x, at: frac),
                        y: y.interpolated(to: other.y, at: frac))
     }
 }
 
 public func + (lhs: CGPoint, rhs: CGPoint) -> CGVector {
-    CGVector(dx: lhs.x + rhs.x, dy: lhs.y + rhs.y)
+    return CGVector(dx: lhs.x + rhs.x, dy: lhs.y + rhs.y)
 }
 
 public func - (lhs: CGPoint, rhs: CGPoint) -> CGVector {
-    CGVector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
+    return CGVector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
 }
 
 public func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
-    CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
+    return CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
 }
 
 public func - (lhs: CGPoint, rhs: CGVector) -> CGPoint {
-    CGPoint(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
+    return CGPoint(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
 }
 
 public func + (lhs: CGVector, rhs: CGPoint) -> CGPoint {
-    CGPoint(x: lhs.dx + rhs.x, y: lhs.dy + rhs.y)
+    return CGPoint(x: lhs.dx + rhs.x, y: lhs.dy + rhs.y)
 }
 
 public func - (lhs: CGVector, rhs: CGPoint) -> CGPoint {
-    CGPoint(x: lhs.dx - rhs.x, y: lhs.dy - rhs.y)
+    return CGPoint(x: lhs.dx - rhs.x, y: lhs.dy - rhs.y)
 }

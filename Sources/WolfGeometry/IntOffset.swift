@@ -43,16 +43,16 @@ public struct IntOffset {
 
 extension IntOffset: Equatable {
     public static func == (lhs: IntOffset, rhs: IntOffset) -> Bool {
-        lhs.dx == rhs.dx && lhs.dy == rhs.dy
+        return lhs.dx == rhs.dx && lhs.dy == rhs.dy
     }
 }
 
 public prefix func - (rhs: IntOffset) -> IntOffset {
-    IntOffset(dx: -rhs.dx, dy: -rhs.dy)
+    return IntOffset(dx: -rhs.dx, dy: -rhs.dy)
 }
 
 public func + (lhs: IntOffset, rhs: IntOffset) -> IntOffset {
-    IntOffset(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
+    return IntOffset(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
 }
 
 public func += (lhs: inout IntOffset, rhs: IntOffset) {
@@ -62,7 +62,7 @@ public func += (lhs: inout IntOffset, rhs: IntOffset) {
 extension IntOffset: CustomStringConvertible {
     public var description: String {
         get {
-            "Offset(dx:\(dx) dy:\(dy))"
+            return "Offset(dx:\(dx) dy:\(dy))"
         }
     }
 }

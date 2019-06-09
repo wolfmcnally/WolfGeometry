@@ -29,7 +29,7 @@ public struct AspectRatio: ExtensibleEnumeratedName {
 
     public let rawValue: String
     public var aspectSize: Size {
-        Self.associatedAspects[self]!
+        return Self.associatedAspects[self]!
     }
 
     public init(_ rawValue: String) {
