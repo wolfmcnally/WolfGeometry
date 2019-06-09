@@ -47,14 +47,14 @@ public struct Insets<T: BinaryFloatingPoint> {
         self.init(top: v, left: h, bottom: v, right: h)
     }
 
-    public static var zero: Insets { return Insets(top: 0, left: 0, bottom: 0, right: 0) }
+    public static var zero: Insets { Insets(top: 0, left: 0, bottom: 0, right: 0) }
 
     public var horizontal: T {
-        return (left ?? 0) + (right ?? 0)
+        (left ?? 0) + (right ?? 0)
     }
 
     public var vertical: T {
-        return (top ?? 0) + (bottom ?? 0)
+        (top ?? 0) + (bottom ?? 0)
     }
 }
 
@@ -82,17 +82,13 @@ public struct Insets<T: BinaryFloatingPoint> {
             self.init(top: v, left: h, bottom: v, right: h)
         }
 
-        public var horizontal: CGFloat {
-            return left + right
-        }
+        public var horizontal: CGFloat { left + right }
 
-        public var vertical: CGFloat {
-            return top + bottom
-        }
+        public var vertical: CGFloat { top + bottom }
     }
 
     public func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets(top: lhs.top + rhs.top, left: lhs.left + rhs.left, bottom: lhs.bottom + rhs.bottom, right: lhs.right + rhs.right)
+        UIEdgeInsets(top: lhs.top + rhs.top, left: lhs.left + rhs.left, bottom: lhs.bottom + rhs.bottom, right: lhs.right + rhs.right)
     }
 
     #if swift(>=4.2)

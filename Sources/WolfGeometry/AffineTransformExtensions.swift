@@ -34,15 +34,15 @@ extension CGAffineTransform {
     }
 
     public func scaled(by v: CGVector) -> CGAffineTransform {
-        return scaledBy(x: v.dx, y: v.dy)
+        scaledBy(x: v.dx, y: v.dy)
     }
 
     public func translated(by v: CGVector) -> CGAffineTransform {
-        return translatedBy(x: v.dx, y: v.dy)
+        translatedBy(x: v.dx, y: v.dy)
     }
 
     public func rotated(by angle: CGFloat, around point: CGPoint) -> CGAffineTransform {
-        return translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
+        translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
     }
 }
 
@@ -56,15 +56,15 @@ extension CGAffineTransform {
     }
 
     public func scaled(by v: Vector) -> CGAffineTransform {
-        return scaledBy(x: v.dx, y: v.dy)
+        scaledBy(x: v.dx, y: v.dy)
     }
 
     public func translated(by v: Vector) -> CGAffineTransform {
-        return translatedBy(x: v.dx, y: v.dy)
+        translatedBy(x: v.dx, y: v.dy)
     }
 
     public func rotated(by angle: Double, around point: Point) -> CGAffineTransform {
-        return translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
+        translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
     }
 }
 
@@ -86,14 +86,14 @@ extension CGAffineTransform {
     }
 
     public func translatedBy(x tx: Double, y ty: Double) -> CGAffineTransform {
-        return translatedBy(x: CGFloat(tx), y: CGFloat(ty))
+        translatedBy(x: CGFloat(tx), y: CGFloat(ty))
     }
 
     public func scaledBy(x sx: Double, y sy: Double) -> CGAffineTransform {
-        return scaledBy(x: CGFloat(sx), y: CGFloat(sy))
+        scaledBy(x: CGFloat(sx), y: CGFloat(sy))
     }
 
     public func rotated(by angle: Double) -> CGAffineTransform {
-        return rotated(by: CGFloat(angle))
+        rotated(by: CGFloat(angle))
     }
 }

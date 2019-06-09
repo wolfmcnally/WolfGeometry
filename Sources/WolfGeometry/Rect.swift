@@ -52,7 +52,7 @@ public struct Rect {
 
 extension Rect: CustomStringConvertible {
     public var description: String {
-        return("Rect(\(minX), \(minY), \(width), \(height))")
+        "Rect(\(minX), \(minY), \(width), \(height))"
     }
 }
 
@@ -78,44 +78,44 @@ extension Rect {
 
 extension Rect {
     public var width: Double {
-        get { return size.width }
+        get { size.width }
         mutating set { size.width = newValue }
     }
 
     public var height: Double {
-        get { return size.height }
+        get { size.height }
         mutating set { size.height = newValue }
     }
 }
 
 extension Rect {
     public var minX: Double {
-        get { return origin.x }
+        get { origin.x }
         mutating set { origin.x = newValue }
     }
 
     public var midX: Double {
-        get { return minX + width / 2.0 }
+        get { minX + width / 2.0 }
         mutating set { origin.x = newValue - width / 2.0 }
     }
 
     public var maxX: Double {
-        get { return minX + width }
+        get { minX + width }
         mutating set { origin.x = newValue - width }
     }
 
     public var minY: Double {
-        get { return origin.y }
+        get { origin.y }
         mutating set { origin.y = newValue }
     }
 
     public var midY: Double {
-        get { return minY + height / 2.0 }
+        get { minY + height / 2.0 }
         mutating set { origin.y = newValue - height / 2.0 }
     }
 
     public var maxY: Double {
-        get { return minY + height }
+        get { minY + height }
         mutating set { origin.y = newValue - height }
     }
 }
@@ -123,57 +123,57 @@ extension Rect {
 extension Rect {
     // Corners
     public var minXminY: Point {
-        get { return origin }
+        get { origin }
         mutating set { origin = newValue }
     }
 
     public var maxXminY: Point {
-        get { return Point(x: maxX, y: minY) }
+        get { Point(x: maxX, y: minY) }
         mutating set { maxX = newValue.x; minY = newValue.y }
     }
 
     public var minXmaxY: Point {
-        get { return Point(x: minX, y: maxY) }
+        get { Point(x: minX, y: maxY) }
         mutating set { minX = newValue.x; maxY = newValue.y }
     }
 
     public var maxXmaxY: Point {
-        get { return Point(x: maxX, y: maxY) }
+        get { Point(x: maxX, y: maxY) }
         mutating set { maxX = newValue.x; maxY = newValue.y }
     }
 
     // Sides
     public var midXminY: Point {
-        get { return Point(x: midX, y: minY) }
+        get { Point(x: midX, y: minY) }
         mutating set { midX = newValue.x; minY = newValue.y }
     }
 
     public var midXmaxY: Point {
-        get { return Point(x: midX, y: maxY) }
+        get { Point(x: midX, y: maxY) }
         mutating set { midX = newValue.x; maxY = newValue.y }
     }
 
     public var maxXmidY: Point {
-        get { return Point(x: maxX, y: midY) }
+        get { Point(x: maxX, y: midY) }
         mutating set { maxX = newValue.x; midY = newValue.y }
     }
 
     public var minXmidY: Point {
-        get { return Point(x: minX, y: midY) }
+        get { Point(x: minX, y: midY) }
         mutating set { minX = newValue.x; midY = newValue.y }
     }
 
     // Center
     public var midXmidY: Point {
-        get { return Point(x: midX, y: midY) }
+        get { Point(x: midX, y: midY) }
         mutating set { midX = newValue.x; midY = newValue.y }
     }
 }
 
 extension Rect {
-    public var isNull: Bool { return self.origin == .infinite }
-    public var isEmpty: Bool { return self.isNull || size.isEmpty }
-    public var isInfinite: Bool { return self == .infinite }
+    public var isNull: Bool { self.origin == .infinite }
+    public var isEmpty: Bool { self.isNull || size.isEmpty }
+    public var isInfinite: Bool { self == .infinite }
 }
 
 extension Rect {
@@ -361,12 +361,12 @@ extension Rect: Equatable {
 }
 
 public func == (lhs: Rect, rhs: Rect) -> Bool {
-    return lhs.origin == rhs.origin && lhs.size == rhs.size
+    lhs.origin == rhs.origin && lhs.size == rhs.size
 }
 
 extension Rect: Interpolable {
     public func interpolated(to other: Rect, at frac: Frac) -> Rect {
-        return Rect(origin: origin.interpolated(to: other.origin, at: frac),
+        Rect(origin: origin.interpolated(to: other.origin, at: frac),
                     size: size.interpolated(to: other.size, at: frac))
     }
 }
