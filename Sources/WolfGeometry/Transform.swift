@@ -89,7 +89,7 @@ public struct Transform : Hashable, CustomStringConvertible {
     }
 
     public func scaled(by v: Vector) -> Transform{
-        return scaledBy(x: v.dx, y: v.dy)
+        scaledBy(x: v.dx, y: v.dy)
     }
 
     /**
@@ -136,7 +136,7 @@ public struct Transform : Hashable, CustomStringConvertible {
     }
 
     public func translated(by v: Vector) -> Transform{
-        return translatedBy(x: v.dx, y: v.dy)
+        translatedBy(x: v.dx, y: v.dy)
     }
 
     /**
@@ -258,15 +258,15 @@ public struct Transform : Hashable, CustomStringConvertible {
     }
 
     public var description: String {
-        return "{m11:\(m11), m12:\(m12), m21:\(m21), m22:\(m22), tX:\(tX), tY:\(tY)}"
+        "{m11:\(m11), m12:\(m12), m21:\(m21), m22:\(m22), tX:\(tX), tY:\(tY)}"
     }
 
     public var debugDescription: String {
-        return description
+        description
     }
 
     public static func ==(lhs: Transform, rhs: Transform) -> Bool {
-        return lhs.m11 == rhs.m11 && lhs.m12 == rhs.m12 &&
+        lhs.m11 == rhs.m11 && lhs.m12 == rhs.m12 &&
             lhs.m21 == rhs.m21 && lhs.m22 == rhs.m22 &&
             lhs.tX == rhs.tX && lhs.tY == rhs.tY
     }
@@ -321,6 +321,6 @@ extension Transform : Codable {
 
 extension Transform {
     public mutating func rotated(by angle: Double, around point: Point) -> Transform {
-        return translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
+        translatedBy(x: point.x, y: point.y).rotated(by: angle).translatedBy(x: -point.x, y: -point.y)
     }
 }

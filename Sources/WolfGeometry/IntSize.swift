@@ -35,39 +35,39 @@ public struct IntSize {
     }
 
     public func randomX() -> Int {
-        return Int.random(in: 0 ..< width)
+        Int.random(in: 0 ..< width)
     }
 
     public func randomY() -> Int {
-        return Int.random(in: 0 ..< height)
+        Int.random(in: 0 ..< height)
     }
 
     public func randomPoint() -> Point {
-        return Point(x: randomX(), y: randomY())
+        Point(x: randomX(), y: randomY())
     }
 
     public static let zero = IntSize()
 
     public var bounds: IntRect {
-        return IntRect(origin: .zero, size: self)
+        IntRect(origin: .zero, size: self)
     }
 
     public var aspect: CGFloat {
-        return CGFloat(width) / CGFloat(height)
+        CGFloat(width) / CGFloat(height)
     }
 }
 
 extension IntSize: CustomStringConvertible {
     public var description: String {
         get {
-            return "IntSize(width:\(width) height:\(height))"
+            "IntSize(width:\(width) height:\(height))"
         }
     }
 }
 
 extension IntSize: Equatable {
     public static func == (lhs: IntSize, rhs: IntSize) -> Bool {
-        return lhs.width == rhs.width && lhs.height == rhs.height
+        lhs.width == rhs.width && lhs.height == rhs.height
     }
 }
 
