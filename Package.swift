@@ -9,7 +9,7 @@ let package = Package(
             targets: ["WolfGeometry"]),
         ],
     dependencies: [
-        .package(url: "https://github.com/wolfmcnally/WolfCore", from: "4.0.0")
+        .package(url: "https://github.com/wolfmcnally/WolfCore", from: "5.0.0")
     ],
     targets: [
         .target(
