@@ -3,6 +3,9 @@ import PackageDescription
 
 let package = Package(
     name: "WolfGeometry",
+    platforms: [
+        .iOS(.v9), .macOS(.v10_13), .tvOS(.v11)
+    ],
     products: [
         .library(
             name: "WolfGeometry",
