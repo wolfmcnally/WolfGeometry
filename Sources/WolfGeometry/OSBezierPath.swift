@@ -24,10 +24,10 @@
 
 import Foundation
 
-#if canImport(AppKit)
-    import AppKit
-    public typealias OSBezierPath = NSBezierPath
-#elseif canImport(UIKit)
-    import UIKit
-    public typealias OSBezierPath = UIBezierPath
+#if canImport(UIKit)
+import UIKit
+public typealias OSBezierPath = UIBezierPath
+#elseif canImport(AppKit)
+import AppKit
+public typealias OSBezierPath = NSBezierPath
 #endif
