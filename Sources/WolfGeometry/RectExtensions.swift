@@ -23,7 +23,8 @@
 //  SOFTWARE.
 
 import CoreGraphics
-import WolfCore
+import WolfNumerics
+import WolfStrings
 
 extension CGRect {
     // Corners

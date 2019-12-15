@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 import Foundation
-import WolfCore
+import WolfNumerics
 
 #if canImport(CoreGraphics)
 import CoreGraphics

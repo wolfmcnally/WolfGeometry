@@ -24,7 +24,8 @@
 
 import Foundation
 import CoreGraphics
-import WolfCore
+import WolfNumerics
+import WolfStrings
 
 #if canImport(UIKit)
     import UIKit

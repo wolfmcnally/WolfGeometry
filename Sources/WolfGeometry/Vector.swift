@@ -22,6 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+import WolfNumerics
+
 #if canImport(CoreGraphics)
     import CoreGraphics
 #elseif canImport(Glibc)
@@ -29,7 +31,6 @@
 #endif
 
 import Foundation
-import WolfCore
 
 public struct Vector {
     public var dx: Double = 0

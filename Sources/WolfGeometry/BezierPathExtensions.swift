@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 import CoreGraphics
-import WolfCore
+import WolfFoundation
 
 #if canImport(AppKit)
     import AppKit

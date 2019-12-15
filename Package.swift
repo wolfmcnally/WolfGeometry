@@ -13,7 +13,7 @@ let package = Package(
             targets: ["WolfGeometry"]),
         ],
     dependencies: [
-        .package(url: "https://github.com/wolfmcnally/WolfCore", from: "5.0.0"),
+        //.package(url: "https://github.com/wolfmcnally/WolfCore", from: "5.0.0"),
         .package(url: "https://github.com/wolfmcnally/WolfNumerics", from: "4.0.0"),
         .package(url: "https://github.com/wolfmcnally/ExtensibleEnumeratedName", from: "2.0.0"),
         .package(url: "https://github.com/wolfmcnally/WolfStrings", from: "2.0.0"),
@@ -23,7 +23,7 @@ let package = Package(
         .target(
             name: "WolfGeometry",
             dependencies: [
-                "WolfCore",
+                //"WolfCore",
                 "WolfNumerics",
                 "ExtensibleEnumeratedName",
                 "WolfStrings",
